@@ -33,7 +33,7 @@ class ProxiesReceiver(redis.Redis):
     def wait_proxies(self):
         """ 等待获取足够的代理ip """
         for i in range(300):
-            proxy_num = self.hlen('use_proxy')
+            proxy_num = self.hlen(conf.proxy_redis_name)
             if proxy_num > 4:
                 return True
             print('\r wait for enough proxies(%d)... %ds' % (proxy_num, i), end='')
