@@ -32,6 +32,9 @@ class RedisClient(redis.Redis):
         """ 待搜索关键词存入KEYWORDS_TMP中 """
         self.sadd('KEYWORDS_TMP', keywords)
 
+    def count_candidate_keywords(self):
+        return self.scard('KEYWORDS_TMP')
+
     def save_topic_message(self, d):
         """话题信息写入"""
         name = BeautifulSoup(d.get("name"), 'lxml').get_text()
