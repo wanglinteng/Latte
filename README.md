@@ -109,8 +109,6 @@ redis存储
         1）git clone 后修改 setting.py 中 DB_CONN、TABLE_NAME
 
         2）start.sh 启动
-
-    
 ```
 
 #### 捐赠支持~
