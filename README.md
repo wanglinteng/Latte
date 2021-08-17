@@ -81,6 +81,38 @@ redis存储
 ```
 
 
+#### 代理池
+```
+    1. config.ini 配置代理池
+        proxy_redis_host = 127.0.0.1
+        proxy_redis_port = 6379
+        proxy_redis_db = 0
+        proxy_redis_name = proxy_key
+
+    2. proxy_key为hash结构：
+        hash_key: 47.92.234.75:80
+        hash_value:
+        {
+            proxy:"47.92.234.75:80"
+            https:false
+            fail_count:0
+            region:""
+            anonymous:""
+            source:"freeProxy08"
+            check_count:3
+            last_status:true
+            last_time:"2021-08-17 14:31:47"
+        }
+
+    3. 推荐使用 https://github.com/jhao104/proxy_pool.git 
+
+        1）git clone 后修改 setting.py 中 DB_CONN、TABLE_NAME
+
+        2）start.sh 启动
+
+    
+```
+
 #### 捐赠支持~
 ```
 帮我脱单 OR 微信/支付宝赞助一杯
