@@ -33,7 +33,7 @@ Latte 是一个灵活[简易]知乎爬虫啦！(→_→)
 
 #### Latte 结果示例~
 ```
-以下示例采用filter.py中*_001过滤器，可根据需求改造，欢迎提交更多过滤器模板
+以下示例采用 filter.py 中 *_001 过滤器，可根据需求改造，欢迎提交更多过滤器模板
 
 文件存储目录结构
 
@@ -75,7 +75,7 @@ redis存储
 
 #### npm 安装
 ```
-1. 如何在CentOS 7上安装Node.js和npm?
+1. 如何在 CentOS 7上安装 Node.js 和 npm ?
 
     https://www.myfreax.com/how-to-install-node-js-on-centos-7/
 ```
@@ -89,7 +89,7 @@ redis存储
         proxy_redis_db = 0
         proxy_redis_name = proxy_key
 
-    2. proxy_key为hash结构：
+    2. proxy_key 为 hash 结构：
         hash_key: 47.92.234.75:80
         hash_value:
         {
