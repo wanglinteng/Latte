@@ -125,7 +125,7 @@ def article_html_001(html):
     title = soup.find('h1', class_='Post-Title')
     title = title.get_text() if title else ''
 
-    content = soup.find('div', class_='RichText ztext Post-RichText')
+    content = soup.find('div', class_='Post-RichTextContainer')
     content = content.get_text() if content else ''
 
     topics = []

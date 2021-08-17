@@ -76,7 +76,8 @@ redis存储
 #### npm 安装
 ```
 1. 如何在CentOS 7上安装Node.js和npm?
-https://www.myfreax.com/how-to-install-node-js-on-centos-7/
+
+    https://www.myfreax.com/how-to-install-node-js-on-centos-7/
 ```
 
 
