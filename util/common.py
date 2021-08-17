@@ -2,6 +2,7 @@ import json
 import time
 
 from util.redis_cli import redis_cli
+from util.config import conf
 
 
 def url_encoder(p_id=None, question_id=None, answer_id=None, zvideo_id=None):
@@ -61,11 +62,12 @@ def redis_monitor(p_list):
     """ 状态监控，显示抓取到数量 """
     while process_check(p_list):
         print(
-            'use_proxy:{}\t'
+            '{}:{}\t'
             'KEYWORDS_TMP:{}\t'
             'TOPIC_DAG:{}\tTOPIC_MESSAGE:{}\tTOPIC_MESSAGE_TMP:{}\t'
             'URLS:{}\tURLS_TMP:{}'.format(
-                redis_cli.hlen('use_proxy'),
+                conf.proxy_redis_name,
+                redis_cli.hlen(conf.proxy_redis_name),
                 redis_cli.scard('KEYWORDS_TMP'),
                 redis_cli.hlen('TOPIC_DAG'),
                 redis_cli.hlen('TOPIC_MESSAGE'),

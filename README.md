@@ -73,6 +73,12 @@ redis存储
         19915165 {'name': '时尚配饰', 'introduction': '', 'questions_count': 837, 'best_answers_count': 436, 'followers_count': 1019305, 'best_answerers_count': 38}
 ```
 
+#### npm 安装
+```
+1. 如何在CentOS 7上安装Node.js和npm?
+https://www.myfreax.com/how-to-install-node-js-on-centos-7/
+```
+
 
 #### 捐赠支持~
 ```
