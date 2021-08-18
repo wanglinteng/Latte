@@ -34,7 +34,6 @@ class Search(object):
         aram_list = parse_qs(nextparse.query)
         next_query = {
             'correction': aram_list.get('correction')[0],
-            'lc_idx': aram_list.get('lc_idx')[0],
             'limit': aram_list.get('limit')[0],
             'offset': aram_list.get('offset')[0],
             'q': aram_list.get('q')[0],
@@ -42,6 +41,8 @@ class Search(object):
             'show_all_topics': aram_list.get('show_all_topics')[0],
             't': aram_list.get('t')[0],
         }
+        if 'lc_idx' in next_query.keys():  # lc_idx参数可能不存在
+            next_query['lc_idx'] = aram_list.get('lc_idx')[0]
         next_query = urlencode(next_query)
         url_part = '/api/v4/search_v3?' + next_query
         url = 'https://www.zhihu.com' + url_part
@@ -77,11 +78,15 @@ class Search(object):
 
                 # not first, must search_hash_id parameter
                 else:
-                    q, general_url_part, url = self.next_to_url(next=next)
-                    headers = gen_header(url_part=general_url_part, q=q, type=t)
-                    proxies = self.proxy.one_random if self.proxy else None
-                    results = self.session.get(url=url, headers=headers, proxies=proxies,
-                                               timeout=timeout).json()
+                    try:
+                        q, general_url_part, url = self.next_to_url(next=next)
+                        headers = gen_header(url_part=general_url_part, q=q, type=t)
+                        proxies = self.proxy.one_random if self.proxy else None
+                        results = self.session.get(url=url, headers=headers, proxies=proxies,
+                                                   timeout=timeout).json()
+                    except Exception as e:
+                        self.logger.error(e, next)
+                        is_end = True
 
                 # next: 下一页URL, is_end: 是否获取结束
                 paging = results.get('paging', {})
