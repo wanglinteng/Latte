@@ -6,7 +6,7 @@ from util.decorator import LazyProperty
 from util.decorator import singleton
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
-OUTPUT_DIR = os.path.join(PROJECT_DIR, 'output', time.strftime("%Y%m%d", time.localtime()))
+OUTPUT_DIR = os.path.join(PROJECT_DIR, 'output')
 LOG_DIR = os.path.join(PROJECT_DIR, 'logs')
 
 

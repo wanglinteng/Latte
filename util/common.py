@@ -1,8 +1,9 @@
 import json
+import os
 import time
 
+from util.config import conf, OUTPUT_DIR
 from util.redis_cli import redis_cli
-from util.config import conf
 
 
 def url_encoder(p_id=None, question_id=None, answer_id=None, zvideo_id=None):
@@ -76,3 +77,8 @@ def redis_monitor(p_list):
                 redis_cli.scard('URLS_TMP')))
         time.sleep(3)
     process_kill_all(p_list)
+
+
+def get_cur_output_dir():
+    """ 当前写入文件夹 """
+    return os.path.join(OUTPUT_DIR, time.strftime("%Y%m%d", time.localtime()))
