@@ -1,7 +1,10 @@
+import time
+
 import requests
 
 from core.filter import multi_html_001
-from util.common import url_encoder, print_json
+from util.captcha import captcha_check
+from util.common import url_encoder, print_json, is_un_human
 from util.header import normal_header
 from util.loghandler import LogHandler
 from util.proxy import ProxiesReceiver
@@ -22,6 +25,10 @@ class View(object):
             proxies = self.proxy.one_random if self.proxy else None
             ques = session.get(url=url, headers=normal_header(), proxies=proxies, timeout=timeout)
             html = ques.text
+            if is_un_human(html):  # 触发知乎验证码
+                r = captcha_check()
+                self.logger.error('captcha_check {}'.format(r))
+                time.sleep(10)
             return html
         except Exception as e:
             self.logger.info(html)

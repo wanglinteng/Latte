@@ -4,6 +4,7 @@ import time
 
 from util.config import conf, OUTPUT_DIR
 from util.redis_cli import redis_cli
+from bs4 import BeautifulSoup
 
 
 def url_encoder(p_id=None, question_id=None, answer_id=None, zvideo_id=None):
@@ -88,3 +89,9 @@ def get_cur_output_dir():
     except Exception as e:
         print('mkdir exception {}'.format(e))
     return path
+
+
+def is_un_human(html):
+    """ 触发知乎验证码后网页存在Unhuman div标识"""
+    soup = BeautifulSoup(html, 'lxml')
+    return soup.find('div', class_='Unhuman')
