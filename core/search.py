@@ -32,17 +32,13 @@ class Search(object):
         """ 第2/3/4..次请求URL解析 """
         nextparse = urlparse(next)
         aram_list = parse_qs(nextparse.query)
-        next_query = {
-            'correction': aram_list.get('correction')[0],
-            'limit': aram_list.get('limit')[0],
-            'offset': aram_list.get('offset')[0],
-            'q': aram_list.get('q')[0],
-            'search_hash_id': aram_list.get('search_hash_id')[0],
-            'show_all_topics': aram_list.get('show_all_topics')[0],
-            't': aram_list.get('t')[0],
-        }
-        if 'lc_idx' in next_query.keys():  # lc_idx参数可能不存在
-            next_query['lc_idx'] = aram_list.get('lc_idx')[0]
+        next_query = {}
+        aram_list_keys = aram_list.keys()
+        # 部分参数可能不存在
+        for k in ['correction', 'limit', 'offset', 'q', 'search_hash_id', 'show_all_topics', 't', 'lc_idx']:
+            if k in aram_list_keys:
+                next_query[k] = aram_list.get(k)[0]
+
         next_query = urlencode(next_query)
         url_part = '/api/v4/search_v3?' + next_query
         url = 'https://www.zhihu.com' + url_part
