@@ -81,4 +81,10 @@ def redis_monitor(p_list):
 
 def get_cur_output_dir():
     """ 当前写入文件夹 """
-    return os.path.join(OUTPUT_DIR, time.strftime("%Y%m%d", time.localtime()))
+    path = os.path.join(OUTPUT_DIR, time.strftime("%Y%m%d", time.localtime()))
+    try:
+        if not os.path.exists(path):
+            os.makedirs(path)
+    except Exception as e:
+        print('mkdir exception {}'.format(e))
+    return path
