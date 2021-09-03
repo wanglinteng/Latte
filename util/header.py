@@ -21,7 +21,7 @@ except Exception as e:
     print('user_agents load exception {}'.format(e))
 
 
-def gen_header(url_part, q, type, d_c0='"ACDXfhlXcBKPThgCFcQdr3f7_bWmqk79pmQ=|1609556670"'):
+def gen_header(url_part, q, type, d_c0='"ACDXfhlXcBKPThgCFcQdt5d4_bWmqk79pmQ=|1609556670"'):
     """
         init:
             cd x-zse-96/
